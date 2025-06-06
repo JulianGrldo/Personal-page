@@ -41,8 +41,5 @@ https://juliangrldo.github.io/Personal_page/
 
 📩 julian.isaza2527@gmail.com
 
-🌐 LinkedIn
-
-💻 GitHub
 
 Este proyecto representa mi crecimiento como desarrollador y mi enfoque en soluciones reales. Estará en constante evolución.
