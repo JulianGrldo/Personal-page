@@ -34,7 +34,7 @@ Plantilla basada en HTML5 UP
 
 📦 Cómo ver el sitio 
 accede al enlace:
-https://juliangrldo.github.io/Personal_page/
+https://juliangrldo.github.io/Personal-page/
 
 📧 Contacto
 ¿Quieres ponerte en contacto conmigo?
