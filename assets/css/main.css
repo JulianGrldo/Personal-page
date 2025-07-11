@@ -2232,6 +2232,7 @@ input[type="radio"] + label:before {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  padding-bottom: 100px;
 }
 
 /* List */
@@ -3357,4 +3358,39 @@ h3:hover:after {
 #objetivos .row.visible.animated > div {
   opacity: 1;
   transform: translateX(0);
+}
+
+  /* --- Opción 1: Fondo Azul para TODAS las secciones --- */
+
+body {
+  /* Mantenemos un fondo base neutro para el espacio entre secciones */
+  background-color: #f4f7f9;
+}
+
+#wrapper {
+  background: transparent;
+}
+
+#main > section {
+  /* Aplicamos el gradiente azul a cada sección */
+  background: linear-gradient(135deg, #eaf2f8 0%, #f6f9fc 100%);
+
+  /* Opcional: quitamos el borde superior para un look más limpio */
+  border-top: none;
+
+  /* Opcional: añadimos una sombra sutil para que "floten" */
+  box-shadow: 0 8px 25px rgba(0, 50, 100, 0.05);
+
+  /* Agregamos un margen inferior para separar las secciones */
+  margin-bottom: 2em;
+}
+
+/* Quitamos el margen de la última sección */
+#main > section:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Quitamos el padding superior de la primera sección para que no se vea doble */
+#main > section:first-of-type {
+    padding-top: 0;
 }
