@@ -3011,14 +3011,14 @@ input[type="button"]:disabled,
     -webkit-transform: translateX(-22em);
     -ms-transform: translateX(-22em);
     transform: translateX(-22em);
-    left: 0;
+    left: 0;  
   }
 
   /* Wrapper */
 
 #wrapper {
   background: #fff;
-  padding-left: 22em; /* Espacio para el menú lateral */
+  padding-left: 0; /* Espacio para el menú lateral */
   padding-top: 0;     /* Asegura que no haya relleno superior */
   padding-right: 0;
   padding-bottom: 0;
