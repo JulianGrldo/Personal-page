@@ -3211,3 +3211,150 @@ input[type="button"]:disabled,
     padding: 1em 0 0 0;
   }
 }
+.features article {
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.features article.visible {
+  opacity: 1;
+  transform: translateY(0);
+} 
+
+/* Efecto hover en iconos de habilidades */
+ul.feature-icons li:before {
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+ul.feature-icons li:hover:before {
+  transform: rotate(360deg);
+  background-color: #3a98c7; /* Un tono más oscuro del azul actual */
+}
+
+h2, h3 {
+  position: relative;
+  display: inline-block;
+}
+
+h2:after,
+h3:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #4cabda;
+  transition: width 0.4s ease;
+  -webkit-transition: width 0.4s ease;
+}
+
+h2:hover:after,
+h3:hover:after {
+  width: 100%;
+  left: 0;
+  background: #4cabda;
+}
+
+/* Botón de CV con transición suave */
+.cv-button {
+  display: inline-block;
+  background-color: #4cabda;
+  color: #ffffff !important;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cv-button:hover {
+  background-color: #3a98c7;
+  transform: translateY(-2px);
+}
+
+/* Efecto de zoom en imágenes de proyectos */
+.features article .image img {
+  transition: transform 0.4s ease;
+}
+
+.features article:hover .image img {
+  transform: scale(1.05);
+}
+
+/* Animación para el texto de la sección "Sobre mí" */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#one .container p {
+  animation: fadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Puedes agregar un retraso para cada párrafo si tienes varios */
+#one .container p:nth-of-type(1) {
+  animation-delay: 0.5s;
+}
+
+#one .container p:nth-of-type(2) {
+  animation-delay: 0.8s; /* Ajusta el retraso si tienes más párrafos */
+}
+
+/* Animación de rebote para los iconos del footer */
+#header > footer .icons li .icon {
+  transition: transform 0.3s ease;
+}
+
+#header > footer .icons li:hover .icon {
+  transform: translateY(-5px);
+}
+
+/* Animación para la lista de Habilidades */
+#two ul.feature-icons li {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+#two ul.feature-icons.visible li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Retraso escalonado para cada habilidad */
+#two ul.feature-icons.visible li:nth-child(1) { transition-delay: 0.1s; }
+#two ul.feature-icons.visible li:nth-child(2) { transition-delay: 0.2s; }
+#two ul.feature-icons.visible li:nth-child(3) { transition-delay: 0.3s; }
+#two ul.feature-icons.visible li:nth-child(4) { transition-delay: 0.4s; }
+#two ul.feature-icons.visible li:nth-child(5) { transition-delay: 0.5s; }
+#two ul.feature-icons.visible li:nth-child(6) { transition-delay: 0.6s; }
+
+
+/* Animación para las columnas de Objetivos */
+#objetivos .row > div {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#objetivos .row.visible > div:nth-child(1) {
+  transform: translateX(-50px);
+}
+
+#objetivos .row.visible > div:nth-child(2) {
+  transform: translateX(50px);
+}
+
+#objetivos .row.visible.animated > div {
+  opacity: 1;
+  transform: translateX(0);
+}
