@@ -1842,6 +1842,7 @@ pre code {
 /* Container */
 
 .container {
+
   margin: 0 auto;
   max-width: calc(100% - 4.5em);
   width: 55em; /* Aumentamos el ancho para más espacio */
@@ -3393,4 +3394,18 @@ body {
 /* Quitamos el padding superior de la primera sección para que no se vea doble */
 #main > section:first-of-type {
     padding-top: 0;
+}
+/* --- Efecto de Levantamiento para Proyectos y Experiencia --- */
+
+.features article {
+  /* Preparamos el article para una transición suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features article:hover {
+  /* Hacemos que se eleve 10px hacia arriba */
+  transform: translateY(-10px);
+  
+  /* Aumentamos la sombra para dar una sensación de profundidad */
+  box-shadow: 0 12px 28px rgba(0, 80, 150, 0.12);
 }
