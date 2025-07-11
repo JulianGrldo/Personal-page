@@ -1,5 +1,5 @@
 /*
-	Read Only by HTML5 UP - VERSIÓN FINAL CORREGIDA
+	Read Only by HTML5 UP - VERSIÓN FINAL CON CORRECCIÓN PARA MÓVIL
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -58,31 +58,34 @@
 
 	var $nav_a = $nav.find('a');
 
-    $nav_a.scrolly({
-        speed: 1000,
-        offset: function() {
-            return $titleBar.height();
-        }
-    });	
+	$nav_a.scrolly({
+		speed: 1000,
+		offset: function() {
+			return $titleBar.height();
+		}
+	});
 
 
 	// Bucle principal que maneja todas las secciones
 	$('#main > section').each(function() {
-		var $this = $(this), // La sección actual (ej: #Contacto)
+		var $this = $(this),
 			id = $this.attr('id'),
 			$section_a = $nav_a.filter('[href="#' + id + '"]'); // El link del menú correspondiente
-		
-		var scrollex_offset = -150;
-        if (id === 'Contacto') {
-             // Para la última sección, activamos la animación mucho antes
-             // para asegurarnos de que se vea en móvil.
-            scrollex_offset = -50; 
-        }
+
+		// Por defecto, el offset es -150 para todas las secciones.
+		var scrollexOffset = -150;
+
+		// Si la sección actual es la de "Contacto", cambiamos el offset para que sea más sensible
+		// y se active aunque se llegue al final de la página en móvil.
+		if (id === 'Contacto') {
+			scrollexOffset = -50;
+		}
+
 
 		$this.scrollex({
 			mode: 'middle',
-			offset: -150,
-			
+			offset: scrollexOffset, // Usamos la variable que contiene el offset correcto
+
 			// Al entrar la sección en la pantalla
 			enter: function() {
 
