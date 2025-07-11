@@ -63,7 +63,7 @@
         offset: function() {
             return $titleBar.height();
         }
-    });
+    });	
 
 
 	// Bucle principal que maneja todas las secciones
@@ -71,6 +71,13 @@
 		var $this = $(this), // La sección actual (ej: #Contacto)
 			id = $this.attr('id'),
 			$section_a = $nav_a.filter('[href="#' + id + '"]'); // El link del menú correspondiente
+		
+		var scrollex_offset = -150;
+        if (id === 'Contacto') {
+             // Para la última sección, activamos la animación mucho antes
+             // para asegurarnos de que se vea en móvil.
+            scrollex_offset = -50; 
+        }
 
 		$this.scrollex({
 			mode: 'middle',
