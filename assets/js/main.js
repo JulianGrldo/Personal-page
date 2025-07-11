@@ -58,6 +58,14 @@
 
 	var $nav_a = $nav.find('a');
 
+    $nav_a.scrolly({
+        speed: 1000,
+        offset: function() {
+            return $titleBar.height();
+        }
+    });
+
+
 	// Bucle principal que maneja todas las secciones
 	$('#main > section').each(function() {
 		var $this = $(this), // La sección actual (ej: #Contacto)
