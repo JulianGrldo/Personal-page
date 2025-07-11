@@ -3409,3 +3409,98 @@ body {
   /* Aumentamos la sombra para dar una sensación de profundidad */
   box-shadow: 0 12px 28px rgba(0, 80, 150, 0.12);
 }
+/* --- BLOQUE ÚNICO Y CORREGIDO DE ANIMACIONES --- */
+
+/* Efecto Hover para levantar tarjetas (funciona igual) */
+.features article:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 80, 150, 0.12);
+}
+
+/* --- ESTADO INICIAL: Elementos ocultos ANTES de la animación --- */
+/* Se aplica a todos los elementos que queremos animar en las diferentes secciones */
+
+#two .feature-icons li,
+#objetivos .row > div,
+#three .features article,
+#experiencia .features article,
+#Contacto h3,
+#Contacto .container > p,
+#Contacto .row > div {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+
+/* --- ESTADO FINAL: Elementos visibles CUANDO la sección tiene la clase 'is-visible' --- */
+
+/* Habilidades */
+#two.is-visible .feature-icons li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Objetivos */
+#objetivos.is-visible .row > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Proyectos y Experiencia */
+#three.is-visible .features article,
+#experiencia.is-visible .features article {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contacto */
+#Contacto.is-visible h3,
+#Contacto.is-visible .container > p,
+#Contacto.is-visible .row > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- RETRASOS (Delays) para el efecto escalonado --- */
+
+#two.is-visible li:nth-child(1),
+#three.is-visible article:nth-child(1),
+#experiencia.is-visible article:nth-child(1),
+#Contacto.is-visible h3 {
+    transition-delay: 0.15s;
+}
+
+#two.is-visible li:nth-child(2),
+#three.is-visible article:nth-child(2),
+#experiencia.is-visible article:nth-child(2),
+#Contacto.is-visible .container > p {
+    transition-delay: 0.30s;
+}
+
+#two.is-visible li:nth-child(3),
+#three.is-visible article:nth-child(3),
+#Contacto.is-visible .row > div:nth-child(1) {
+    transition-delay: 0.45s;
+}
+
+#two.is-visible li:nth-child(4),
+#three.is-visible article:nth-child(4),
+#Contacto.is-visible .row > div:nth-child(2) {
+    transition-delay: 0.60s;
+}
+
+#two.is-visible li:nth-child(5),
+#Contacto.is-visible .row > div:nth-child(3) {
+    transition-delay: 0.75s;
+}
+
+#two.is-visible li:nth-child(6),
+#Contacto.is-visible .row > div:nth-child(4) {
+    transition-delay: 0.90s;
+}
+
+#objetivos.is-visible .row > div:nth-child(1) { transition-delay: 0.15s; }
+#objetivos.is-visible .row > div:nth-child(2) { transition-delay: 0.30s; }
+#objetivos.is-visible .row > div:nth-child(3) { transition-delay: 0.45s; }

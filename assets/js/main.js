@@ -1,195 +1,113 @@
 /*
-	Read Only by HTML5 UP
+	Read Only by HTML5 UP - VERSIÓN FINAL CORREGIDA
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function ($) {
+(function($) {
 
 	var $window = $(window),
 		$body = $('body'),
 		$header = $('#header'),
 		$titleBar = null,
-		$nav = $('#nav'),
-		$wrapper = $('#wrapper');
+		$nav = $('#nav');
 
-	// Breakpoints.
+	// Breakpoints
 	breakpoints({
 		xlarge: ['1281px', '1680px'],
 		large: ['1025px', '1280px'],
 		medium: ['737px', '1024px'],
 		small: ['481px', '736px'],
-		xsmall: [null, '480px'],
+		xsmall: [null, '480px']
 	});
 
-	// Play initial animations on page load.
-	$window.on('load', function () {
-		window.setTimeout(function () {
+	// Page Load
+	$window.on('load', function() {
+		window.setTimeout(function() {
 			$body.removeClass('is-preload');
 		}, 100);
 	});
 
-	// Tweaks/fixes.
+	// Panel (Menú lateral en móvil)
+	$header.panel({
+		delay: 500,
+		hideOnClick: true,
+		hideOnSwipe: true,
+		resetScroll: true,
+		resetForms: true,
+		side: 'right',
+		target: $body,
+		visibleClass: 'header-visible'
+	});
 
-	// Polyfill: Object fit.
-	if (!browser.canUse('object-fit')) {
+	// Title Bar (Barra superior en móvil)
+	$titleBar = $('<div id="titleBar"><a href="#header" class="toggle"></a><span class="title">' + $('#logo').html() + '</span></div>').appendTo($body);
 
-		$('.image[data-position]').each(function () {
-
-			var $this = $(this),
-				$img = $this.children('img');
-
-			// Apply img as background.
-			$this
-				.css('background-image', 'url("' + $img.attr('src') + '")')
-				.css('background-position', $this.data('position'))
-				.css('background-size', 'cover')
-				.css('background-repeat', 'no-repeat');
-
-			// Hide img.
-			$img
-				.css('opacity', '0');
-
-		});
-
-	}
-
-	// Header Panel.
-
-	// Nav.
-	var $nav_a = $nav.find('a');
-
-	$nav_a
-		.addClass('scrolly')
-		.on('click', function () {
-
-			var $this = $(this);
-
-			// External link? Bail.
-			if ($this.attr('href').charAt(0) != '#')
-				return;
-
-			// Deactivate all links.
-			$nav_a.removeClass('active');
-
-			// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-			$this
-				.addClass('active')
-				.addClass('active-locked');
-
-		})
-		.each(function () {
-
-			var $this = $(this),
-				id = $this.attr('href'),
-				$section = $(id);
-
-			// No section for this link? Bail.
-			if ($section.length < 1)
-				return;
-
-			// Scrollex.
-			$section.scrollex({
-				mode: 'middle',
-				top: '5vh',
-				bottom: '5vh',
-				initialize: function () {
-
-					// Deactivate section.
-					$section.addClass('inactive');
-
-				},
-				enter: function () {
-
-					// Activate section.
-					$section.removeClass('inactive');
-
-					// No locked links? Deactivate all links and activate this section's one.
-					if ($nav_a.filter('.active-locked').length == 0) {
-
-						$nav_a.removeClass('active');
-						$this.addClass('active');
-
-					}
-
-					// Otherwise, if this section's link is the one that's locked, unlock it.
-					else if ($this.hasClass('active-locked'))
-						$this.removeClass('active-locked');
-
-				}
-			});
-
-		});
-
-	// Title Bar.
-	$titleBar = $(
-		'<div id="titleBar">' +
-		'<a href="#header" class="toggle"></a>' +
-		'<span class="title">' + $('#logo').html() + '</span>' +
-		'</div>'
-	)
-		.appendTo($body);
-
-	// Panel.
-	$header
-		.panel({
-			delay: 500,
-			hideOnClick: true,
-			hideOnSwipe: true,
-			resetScroll: true,
-			resetForms: true,
-			side: 'right',
-			target: $body,
-			visibleClass: 'header-visible'
-		});
-
-	// Scrolly.
+	// Scrolly (Desplazamiento suave al hacer clic en el menú)
 	$('.scrolly').scrolly({
 		speed: 1000,
-		offset: function () {
-
-			if (breakpoints.active('<=medium'))
+		offset: function() {
+			if (breakpoints.active('<=medium')) {
 				return $titleBar.height();
-
+			}
 			return 0;
-
-		}
-	});
-	$('.features article').scrollex({
-		mode: 'middle',
-		top: '20vh',
-		bottom: '20vh',
-		initialize: function () {
-			$(this).addClass('inactive');
-		},
-		enter: function () {
-			$(this).removeClass('inactive').addClass('visible');
-		}
-	});
-	// Animación para la sección de Habilidades
-	$('#two .feature-icons').scrollex({
-		mode: 'middle',
-		top: '-20vh',
-		bottom: '-20vh',
-		enter: function () {
-			$(this).addClass('visible');
 		}
 	});
 
-	// Animación para la sección de Objetivos
-	$('#objetivos .row').scrollex({
-		mode: 'top',
-		top: '-30vh',
-		bottom: '-30vh',
-		initialize: function () {
-			// Añadimos 'visible' para preparar las posiciones iniciales
-			$(this).addClass('visible');
-		},
-		enter: function () {
-			// 'animated' será la clase que dispare la transición
-			$(this).addClass('animated');
-		}
+	// --- LÓGICA UNIFICADA DE SCROLLEX ---
+
+	var $nav_a = $nav.find('a');
+
+	// Bucle principal que maneja todas las secciones
+	$('#main > section').each(function() {
+		var $this = $(this), // La sección actual (ej: #Contacto)
+			id = $this.attr('id'),
+			$section_a = $nav_a.filter('[href="#' + id + '"]'); // El link del menú correspondiente
+
+		$this.scrollex({
+			mode: 'middle',
+			offset: -150,
+			
+			// Al entrar la sección en la pantalla
+			enter: function() {
+
+				// ACCIÓN 1: Activa la animación del contenido de la sección
+				$this.addClass('is-visible');
+
+				// ACCIÓN 2: Pinta de azul el link del menú correspondiente
+				if ($section_a.length > 0) {
+					if ($nav_a.filter('.active-locked').length === 0) {
+						$nav_a.removeClass('active');
+						$section_a.addClass('active');
+					}
+				}
+			},
+
+			// Al salir la sección de la pantalla
+			leave: function() {
+
+				// ACCIÓN 1: Resetea la animación para que pueda volver a ocurrir si el usuario sube
+				$this.removeClass('is-visible');
+
+				// ACCIÓN 2: Quita el color azul del link del menú
+				if ($section_a.length > 0) {
+					$section_a.removeClass('active');
+				}
+			}
+		});
 	});
 
+	// Lógica para que el link del menú se quede "bloqueado" al hacer clic
+	$nav_a.on('click', function() {
+		var $this = $(this);
+		if ($this.attr('href').charAt(0) !== '#') {
+			return;
+		}
+		$nav_a.removeClass('active').removeClass('active-locked');
+		$this.addClass('active').addClass('active-locked');
+	}).on('blur', function() {
+		// Desbloquea cuando el link pierde el foco
+		$(this).removeClass('active-locked');
+	});
 
 })(jQuery);
